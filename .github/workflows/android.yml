@@ -16,7 +16,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Save resulting APK
-      uses: actions/upload-artifact@1
+      uses: actions/upload-artifact@v1
       with:
         name: app-debug.apk
         path: app\build\outputs\apk\debug
