@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import java.time.Instant;
 import java.util.Timer;
@@ -19,8 +20,11 @@ public class UtilityBeltTracer extends Service {
             public void run() {
                 SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor edit = p.edit();
-                    edit.putString("LASTSEEN", String.valueOf(Instant.now().getEpochSecond()));
+                String sNow = String.valueOf(Instant.now().getEpochSecond());
+                edit.putString("LASTSEEN", sNow);
                 edit.apply();
+                Toast toast = Toast.makeText(getApplicationContext(), "Last Seen ".concat(sNow), Toast.LENGTH_SHORT);
+                toast.show();
             }
         }
         ,60,60);
